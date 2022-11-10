@@ -7,6 +7,7 @@ void initial(Dictionary &d, int option)
 {
     while (true)
     {
+        cout << "Enter your text or -1 to ecscape: ";
         string inp;
         getline(cin, inp);
         if (inp == "-1")
@@ -29,12 +30,12 @@ int main()
         cout << "1. Add new word" << endl;
         cout << "2. Check paragraph" << endl;
         cout << "3. Exit" << endl;
-        cout << "Enter your choice: ";
+        cout << "Your choice: ";
 
         int choice;
 
         cin >> choice;
-        cout << "Enter your text or -1 to ecscape: " << endl;
+        cin.ignore(1);
 
         switch (choice)
         {
