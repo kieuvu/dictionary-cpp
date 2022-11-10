@@ -3,10 +3,11 @@
 
 using namespace std;
 
-void initial(Dictionary &d, int option)
+void initial(int option)
 {
     while (true)
     {
+        Dictionary dict;
         cout << "Enter your text or -1 to ecscape: ";
         string inp;
         getline(cin, inp);
@@ -15,16 +16,14 @@ void initial(Dictionary &d, int option)
         if (inp == "")
             continue;
         if (option == 1)
-            d.insert(inp, 1);
+            dict.insert(inp, 1);
         else if (option == 2)
-            d.setParagraph(inp)->checkParagraph();
+            dict.setParagraph(inp)->checkParagraph();
     }
 }
 
 int main()
 {
-    Dictionary *dict = new Dictionary();
-
     while (true)
     {
         cout << "1. Add new word" << endl;
@@ -41,14 +40,12 @@ int main()
         {
         case 1:
         case 2:
-            initial(*dict, choice);
+            initial(choice);
             break;
         case 3:
-            delete dict;
             return 0;
         }
     }
 
-    delete dict;
     return 0;
 }
