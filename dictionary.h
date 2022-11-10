@@ -37,22 +37,22 @@ public:
      */
     void checkParagraph()
     {
-        this->decapitalize(this->paragraph)->extractWords()->getNewWords()->updateDictionary();
+        this->decapitalize(this->paragraph).extractWords().getNewWords().updateDictionary();
     }
 
     /**
      * set doan van
      */
-    Dictionary *setParagraph(string paragraph)
+    Dictionary &setParagraph(string paragraph)
     {
         this->paragraph = paragraph;
-        return this;
+        return *this;
     }
 
     /**
      * Tach tu tu doan van cho vao vector
      */
-    Dictionary *extractWords()
+    Dictionary &extractWords()
     {
         istringstream stream(this->paragraph);
         string word;
@@ -63,31 +63,31 @@ public:
                 this->words.push_back(word);
             }
         }
-        return this;
+        return *this;
     }
 
     /**
      * Chuyen thanh chu khong viet hoa
      */
-    Dictionary *decapitalize(string &word)
+    Dictionary &decapitalize(string &word)
     {
         transform(word.begin(), word.end(), word.begin(), ::tolower);
-        return this;
+        return *this;
     }
 
     /**
      * Lay tu dau tien
      */
-    Dictionary *getFirstWord(string &word)
+    Dictionary &getFirstWord(string &word)
     {
         word = word.substr(0, word.find(" "));
-        return this;
+        return *this;
     }
 
     /**
      * Tim nhung tu chua co trong tu dien
      */
-    Dictionary *getNewWords()
+    Dictionary &getNewWords()
     {
         string word;
         for (int i = 0; i < this->words.size(); i++)
@@ -96,13 +96,13 @@ public:
             if (!file->checkExist(word))
                 newWords.push_back(word);
         }
-        return this;
+        return *this;
     }
 
     /**
      * Cap nhat tu dien
      */
-    Dictionary *updateDictionary()
+    Dictionary &updateDictionary()
     {
         string word;
         string replaceWord;
@@ -119,16 +119,16 @@ public:
                 this->insert(replaceWord, 1);
         }
         cout << "Done!" << endl;
-        return this;
+        return *this;
     }
 
     /**
      * Them tu vao trong tu dien
      */
-    Dictionary *insert(string word, int isUserInput = 0)
+    Dictionary &insert(string word, int isUserInput = 0)
     {
         if (isUserInput)
-            this->decapitalize(word)->getFirstWord(word);
+            this->decapitalize(word).getFirstWord(word);
 
         if (this->file->checkExist(word))
             cout << "The word '" << word << "' is existed!" << endl;
@@ -138,6 +138,6 @@ public:
             cout << "Saved a new word: '" << word << "'!" << endl;
         }
 
-        return this;
+        return *this;
     }
 };
