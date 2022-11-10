@@ -15,9 +15,9 @@ public:
      */
     int checkExist(string word)
     {
-        this->rDictFile.open("btl_dictionary.txt", ios_base::app);
-        int isExisted = 0;
         string currentWord;
+        this->rDictFile.open("btl_dictionary.txt", ios_base::in);
+        int isExisted = 0;
         while (getline(this->rDictFile, currentWord))
         {
             if (currentWord == word)

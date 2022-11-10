@@ -37,7 +37,7 @@ public:
      */
     void checkParagraph()
     {
-        this->decapitalize(this->paragraph)->wordExtractor()->getNewWords()->updateDictionary();
+        this->decapitalize(this->paragraph)->extractWords()->getNewWords()->updateDictionary();
     }
 
     /**
@@ -52,7 +52,7 @@ public:
     /**
      * Tach tu tu doan van cho vao vector
      */
-    Dictionary *wordExtractor()
+    Dictionary *extractWords()
     {
         istringstream stream(this->paragraph);
         string word;
@@ -89,9 +89,10 @@ public:
      */
     Dictionary *getNewWords()
     {
+        string word;
         for (int i = 0; i < this->words.size(); i++)
         {
-            string word = this->words.at(i);
+            word = this->words.at(i);
             if (!file->checkExist(word))
                 newWords.push_back(word);
         }
@@ -103,10 +104,11 @@ public:
      */
     Dictionary *updateDictionary()
     {
+        string word;
+        string replaceWord;
         for (int i = 0; i < this->newWords.size(); i++)
         {
-            string word = this->newWords.at(i);
-            string replaceWord = "";
+            word = this->newWords.at(i);
             cout << "Found a new word: '" << word << "'.Press enter to save or type the correct word, -1 to ignore: ";
             getline(cin, replaceWord);
             if (replaceWord == "-1")
