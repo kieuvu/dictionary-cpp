@@ -18,7 +18,7 @@ void initial(int option)
         if (option == 1)
             dict.insert(inp, 1);
         else if (option == 2)
-            dict.setParagraph(inp).checkParagraph();
+            dict.checkParagraph(inp);
     }
 }
 
